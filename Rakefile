@@ -15,7 +15,7 @@ Jeweler::Tasks.new do |gem|
   gem.name = "legalizer"
   gem.homepage = "http://github.com/darbyfrey/legalizer"
   gem.license = "MIT"
-  gem.summary = %Q{A simple ruby wrapper around the EchoSign API}
+  gem.summary = %Q{A simple ruby wrapper around the RightSignature API}
   gem.description = %Q{}
   gem.email = "darbyfrey@gmail.com"
   gem.authors = ["Darby Frey"]

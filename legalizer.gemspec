@@ -42,7 +42,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{A simple ruby wrapper around the EchoSign API}
+  s.summary = %q{A simple ruby wrapper around the RightSignature API}
   s.test_files = [
     "test/helper.rb",
     "test/test_legalizer.rb"
