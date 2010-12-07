@@ -4,7 +4,7 @@
 
 == DESCRIPTION:
 
-Legalizer is a simple API wrapper around the EchoSign document signature service.  It's still early in development, but you can:
+Legalizer is a simple API wrapper around the RightSignature document signature service.  It's still early in development, but you can:
 * Find and get details on Contracts
 * Search for available Templates
 * Prepare and send a contract for signature
@@ -13,7 +13,11 @@ Legalizer is a simple API wrapper around the EchoSign document signature service
 
 Establish a connection:
 
-  legalizer = Legalizer(:api_key => 'YOUR API KEY', :email => 'YOUR ECHO SIGN LOGIN', :password => 'YOUR ECHO SIGN PASSWORD')
+  legalizer = Legalizer({
+    :oauth_key => 'YOUR OAUTH KEY', 
+    :oauth_secret => 'YOUR OAUTH SECRET', 
+    :access_token => 'YOUR ACCESS TOKEN', 
+    :access_secret => 'YOUR ACCESS SECRET'})
 
 List all available templates:
 
@@ -23,17 +27,23 @@ List recently created contracts:
 
   legalizer.find.all_contracts
 
-You can also find a contract by EchoSign's id:
+You can also find a contract by RightSignature's document id:
 
   legalizer.find.contract(id)
 
-Sending is simplified right now, but will be enhanced later. You can just send a template to an email address:
+Or template id
 
-  legalizer.send(TEMPLATE ID, 'name@domain.com')
+  legalizer.find.template(id)
+
+Sending is simplified right now, but will be enhanced later. For now you can just send a template to an email address with these parameters:
+
+  template = legalizer.find.template(id)
+  template.send('SUBJECT LINE', 'SENDERS NAME', 'SENDERS EMAIL','RECIPIENTS NAME','RECIPIENTS EMAIL','TAG')
 
 == REQUIREMENTS:
 
-* soap4r
+* oauth
+* json
 
 == INSTALL:
 
