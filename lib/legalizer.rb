@@ -10,6 +10,7 @@ module Legalizer
 end
 
 require 'legalizer/base'
+require 'legalizer/oauth'
 require 'legalizer/config'
 require 'legalizer/find'
 require 'legalizer/document'
@@ -17,5 +18,9 @@ require 'legalizer/document/template'
 require 'legalizer/document/contract'
 
 def Legalizer(options={})
-  Legalizer::Base.new(options)
+  if options[:configure_oauth]
+    Legalizer::ConfigureOAuth.new(options)
+  else
+    Legalizer::Base.new(options)
+  end
 end

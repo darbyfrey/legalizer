@@ -17,7 +17,8 @@ Establish a connection:
     :oauth_key => 'YOUR OAUTH KEY', 
     :oauth_secret => 'YOUR OAUTH SECRET', 
     :access_token => 'YOUR ACCESS TOKEN', 
-    :access_secret => 'YOUR ACCESS SECRET'})
+    :access_secret => 'YOUR ACCESS SECRET'
+  })
 
 List all available templates:
 
@@ -48,6 +49,34 @@ Sending is simplified right now, but will be enhanced later. For now you can jus
 == INSTALL:
 
 * gem install leaglizer
+
+== OAUTH
+
+Getting this gem to work with OAuth is a little tricky right now, so I added a quick work around for the time being.  When you get your API access from RightSignature, they will supply you with an OAuth Key and an OAuth Secret. You will need to generate your own Access Token and Access Secret.  To do that, follow these steps:
+
+In the console:
+
+  Legalizer({
+    :configure_oauth => true, 
+    :oauth_key => 'YOUR OAUTH KEY', 
+    :oauth_secret => 'YOUR OAUTH SECRET'
+  })
+
+You will get this response:
+
+  Now visit: https://rightsignature.com/oauth/authorize?oauth_token=SOME_TOKEN
+
+Visit that URL and grant your application access, you will be redirected to localhost, it doesn't matter if the page loads, just grab the oauth_verifier value from the URL string
+
+Paste your oauth_verifier after the prompt and hit enter
+
+  What's the value of `oauth_verifier`?
+
+Then you'll get this response, and you're ready to go:
+
+  Your access token is: YOUR ACCESS TOKEN
+  Your access secret is: YOUR ACCESS SECRET
+  Now you're ready to use these 2 values in your Legalizer configuration
 
 == LICENSE:
 
