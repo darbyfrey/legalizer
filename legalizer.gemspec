@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{legalizer}
-  s.version = "0.2.2"
+  s.version = "0.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Darby Frey"]
@@ -32,6 +32,7 @@ Gem::Specification.new do |s|
     "lib/legalizer/document/contract.rb",
     "lib/legalizer/document/template.rb",
     "lib/legalizer/find.rb",
+    "lib/legalizer/oauth.rb",
     "script/console",
     "script/destroy",
     "script/generate",
