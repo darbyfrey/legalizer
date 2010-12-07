@@ -16,5 +16,9 @@ module Legalizer
     def to_s
       @source.name
     end
+
+    def to_struct
+      OpenStruct.new @source
+    end
   end
 end

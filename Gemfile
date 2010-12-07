@@ -1,5 +1,6 @@
 source "http://rubygems.org"
-gem "soap4r", ">= 1.5.8"
+gem "json", ">= 1.4.6"
+gem "oauth", ">= 0.4.4"
 
 group :development do
   gem "shoulda", ">= 0"

@@ -4,8 +4,7 @@ module Legalizer
       if options[:config].is_a? Legalizer::Config
         @config = options[:config]
         @connection = options[:config].connection
-        @api_key = options[:config].api_key
-        @user = options[:config].user
+        @token = options[:config].token
       else
         @config = Legalizer::Config.new(options)
       end
@@ -13,6 +12,10 @@ module Legalizer
 
     def connection
       @config.connection
+    end
+    
+    def token
+      @config.token
     end
 
     def config

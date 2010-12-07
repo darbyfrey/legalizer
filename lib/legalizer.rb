@@ -1,6 +1,8 @@
 $:.unshift(File.dirname(__FILE__)) unless
 $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
-require 'soap/wsdlDriver'
+# require 'soap/wsdlDriver'
+require 'oauth'
+require 'json'
 require 'ostruct'
 
 module Legalizer

@@ -1,32 +1,17 @@
 module Legalizer
   class Config
-    attr_reader :api_key, :connection, :user
+    attr_reader :connection, :token
     def initialize(options={})
-      options[:api_version] = 9 unless options[:api_version]
-      url = "https://secure.echosign.com/services/EchoSignDocumentService#{options[:api_version]}?WSDL"
-      factory = SOAP::WSDLDriverFactory.new(url)
-      @api_key = options[:api_key]
-      @connection = factory.create_rpc_driver
-      @user = {:email => options[:email], :password => options[:password], :user_id => find_user_id(options[:email])}
+      @connection = OAuth::Consumer.new(options[:oauth_key], options[:oauth_secret], {
+        :site               => "https://rightsignature.com",
+        :scheme             => :header,
+        :http_method        => :post,
+        :request_token_path => "/oauth/request_token",
+        :access_token_path  => "/oauth/access_token",
+        :authorize_path     => "/oauth/authorize"
+      })
+      
+      @token = OAuth::Token.new(options[:access_token], options[:access_secret])
     end
-
-    private
-      def find_user_id(email)
-        result = @connection.getUsersInAccount(:apiKey => @api_key).getUsersInAccountResult.userListForAccount.userInfo
-        if result.is_a? Array
-          result.each do |u|
-            if u.email == email
-              return u.userKey
-            end
-          end
-          return nil
-        else
-          if result.email == email
-            return result.userKey
-          else
-            return nil
-          end
-        end
-      end
   end
 end
