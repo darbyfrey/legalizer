@@ -15,7 +15,7 @@ module Legalizer
     end
 
     private
-      def build_xml(guid, subject, sender_name, sender_email, recipient_name, recipient_email, tag)
+      def build_xml(guid, subject, sender_name, sender_email, recipient_name, recipient_email, tag, callback_url)
         "<template>
           <guid>#{guid}</guid>
           <subject>#{subject}</subject>
@@ -35,6 +35,7 @@ module Legalizer
                   <value>#{tag}</value>
               </tag>
           </tags>
+          <callback_location>#{callback_url}</callback_location>
         </template>"
       end
   end
