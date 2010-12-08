@@ -5,11 +5,11 @@ module Legalizer
       @source = options[:object]
     end
 
-    def send(subject, sender_name, sender_email, recipient_name, recipient_email, tag)
+    def send(subject, sender_name, sender_email, recipient_name, recipient_email, tag, callback_url)
       template_guid = self.source["guid"]
       package = @config.connection.request(:get, "/api/templates/#{template_guid}/prepackage.json", @config.token, {})
       package_guid = JSON.parse(package.body)["template"]["guid"]
-      xml = build_xml(package_guid, subject, sender_name, sender_email, recipient_name, recipient_email, tag)
+      xml = build_xml(package_guid, subject, sender_name, sender_email, recipient_name, recipient_email, tag, callback_url)
       response = JSON.parse(@config.connection.request(:post, '/api/templates.json', @config.token, {}, xml, { 'Content-Type' => 'application/xml' }).body)
       response["document"]["guid"]
     end
