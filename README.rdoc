@@ -36,10 +36,46 @@ Or template id
 
   legalizer.find.template(id)
 
-Sending is simplified right now, but will be enhanced later. For now you can just send a template to an email address with these parameters:
+Sending is simplified right now, but will be enhanced later. For now you can just send a template by providing a valid xml document as described in the RightSignature API documentation (https://rightsignature.com/apidocs/api_calls?api_method=prefillTemplate):
 
   template = legalizer.find.template(id)
-  template.send('SUBJECT LINE', 'SENDERS NAME', 'SENDERS EMAIL','RECIPIENTS NAME','RECIPIENTS EMAIL','TAG')
+  
+  xml_request = '<template>
+    <guid>a_956_1f68556eba674af0b5dc35cdeec58b38</guid>
+    <subject>Test Subject</subject>
+    <description>Test Description</description>
+    <action>prefill</action>
+    <expires_in>5 days</expires_in>
+    <roles>
+        <role role_name="Employee Address">
+            <name>John Employee</name>
+            <email>john@employee.com</email>
+            <locked>true</locked>
+        </role>
+        <role role_id="a_2313_lf79870f3dv_2">
+            <name>Jane Employee</name>
+            <email>jane@employee.com</email>
+            <locked>true</locked>
+        </role>
+    </roles>
+    <merge_fields>
+        <merge_field merge_field_id="a_233_f309f82jklnm_232">
+            <value>$100 per hour</value>
+            <locked>true</locked>
+        </merge_field>
+        <merge_field merge_field_name="Employee Name">
+            <value>J. Employee</value>
+        </merge_field>
+    </merge_fields>
+    <tags>
+        <tag>
+            <value>company1</value>
+        </tag>
+    </tags>
+    <callback_location>http://localhost/doc_callback</callback_location>
+  </template>
+  
+  template.send(xml_request)
 
 == REQUIREMENTS:
 
