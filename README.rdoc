@@ -73,7 +73,7 @@ Sending is simplified right now, but will be enhanced later. For now you can jus
         </tag>
     </tags>
     <callback_location>http://localhost/doc_callback</callback_location>
-  </template>
+  </template>'
   
   template.send(xml_request)
 
