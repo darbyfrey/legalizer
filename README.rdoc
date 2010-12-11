@@ -40,30 +40,32 @@ Sending is simplified right now, but will be enhanced later. For now you can jus
 
   template = legalizer.find.template(id)
   
-  xml_request = '<template>
-    <guid>a_956_1f68556eba674af0b5dc35cdeec58b38</guid>
+  package_id = template.package
+  
+  xml_request = "<template>
+    <guid>#{package_id}</guid>
     <subject>Test Subject</subject>
     <description>Test Description</description>
     <action>prefill</action>
     <expires_in>5 days</expires_in>
     <roles>
-        <role role_name="Employee Address">
+        <role role_name='Employee Address'>
             <name>John Employee</name>
             <email>john@employee.com</email>
             <locked>true</locked>
         </role>
-        <role role_id="a_2313_lf79870f3dv_2">
+        <role role_id='a_2313_lf79870f3dv_2'>
             <name>Jane Employee</name>
             <email>jane@employee.com</email>
             <locked>true</locked>
         </role>
     </roles>
     <merge_fields>
-        <merge_field merge_field_id="a_233_f309f82jklnm_232">
+        <merge_field merge_field_id='a_233_f309f82jklnm_232'>
             <value>$100 per hour</value>
             <locked>true</locked>
         </merge_field>
-        <merge_field merge_field_name="Employee Name">
+        <merge_field merge_field_name='Employee Name'>
             <value>J. Employee</value>
         </merge_field>
     </merge_fields>
@@ -73,7 +75,7 @@ Sending is simplified right now, but will be enhanced later. For now you can jus
         </tag>
     </tags>
     <callback_location>http://localhost/doc_callback</callback_location>
-  </template>'
+  </template>"
   
   template.send(xml_request)
 
