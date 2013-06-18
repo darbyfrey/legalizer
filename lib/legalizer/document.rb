@@ -10,13 +10,13 @@ module Legalizer
     end
 
     def id
-      # @source.documentKey
-      @source.guid
+      @source.documentKey
+      # @source.guid
     end
 
     def to_s
-      # @source.name
-      @source.subject
+      @source.name
+      # @source.subject
     end
 
     def to_struct
