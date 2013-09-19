@@ -20,5 +20,9 @@ module Legalizer
     def state
       @source["state"]
     end
+
+    def to_struct
+      OpenStruct.new @source
+    end
   end
 end
